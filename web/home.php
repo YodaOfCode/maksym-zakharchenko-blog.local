@@ -1,3 +1,5 @@
+<?php require_once 'data.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +11,11 @@
         footer {
             border: 1px dashed black;
         }
+
         .product-list {
             display: flex;
         }
+
         .product-list .product {
             max-width: 30%;
         }
@@ -22,12 +26,17 @@
     <a href="/" title="{DV.Campus} PHP Framework">
         <img src="logo.jpg" alt="{DV.Campus} Logo" width="200"/>
     </a>
-    <menu>
-        <li>Category 1</li>
-        <li>Category 2</li>
-        <li>Category 3</li>
-        <li>Category 4</li>
-    </menu>
+    <nav>
+        <ul>
+            <?php foreach (catalogGetCategory() as $category) : ?>
+                <li>
+                    <a href="/<?= $category['url'] ?>">
+                        <?= $category['name'] ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
 </header>
 <main>
     <section title="Recently Viewed Products">
