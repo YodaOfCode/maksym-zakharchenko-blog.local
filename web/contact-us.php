@@ -9,9 +9,11 @@
         footer {
             border: 1px dashed black;
         }
+
         .product-list {
             display: flex;
         }
+
         .product-list .product {
             max-width: 30%;
         }
