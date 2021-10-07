@@ -1,49 +1,54 @@
-
-<?php require_once 'data.php'; ?>
-
+<?php
+require_once '../src/data.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{DV.Campus} PHP Framework</title>
+    <title>Maksym Zakharchenko Blog</title>
     <style>
         header,
         main,
         footer {
             border: 1px dashed black;
         }
-        .product-list {
+
+        .post-list {
             display: flex;
+            justify-content: center;
         }
-        .product-list .product {
-            max-width: 30%;
+
+        .post {
+            width: 350px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 25px;
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
 <header>
-    <a href="/" title="{DV.Campus} PHP Framework">
-        <img src="logo.jpg" alt="{DV.Campus} Logo" width="200"/>
+    <a href="/" title="Maksym Zakharchenko Blog">
+        <img src="logo.jpg" alt="Logo" width="200"/>
     </a>
     <nav>
-        <ul>
+        <ul >
             <?php foreach (catalogGetCategory() as $category) : ?>
                 <li>
-                    <a href="/<?= $category['url'] ?>">
-                        <?= $category['name'] ?>
-                    </a>
+                    <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
     </nav>
 </header>
-<main>
-    <img src="product-placeholder.png" alt="Product 1" width="300"/>
-    <h1>Product 1</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque dolore eos exercitationem, impedit laudantium minima minus molestias quaerat quam, quidem repellendus sit temporibus veniam veritatis.</p>
-    <span>$33.33</span>
-    <button type="button">Add To Cart</button>
+
+<main class="post-list">
+    <?php require_once "../src/pages/$page" ?>
 </main>
+
 <footer>
     <nav>
         <ul>
