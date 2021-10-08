@@ -35,7 +35,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-1',
             'description' => 'Post 1 Description',
-            'date' => '31.10.2011'
+            'date' => '31 October 2011'
         ],
         2 => [
             'product_id' => 2,
@@ -43,7 +43,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-2',
             'description' => 'Post 2 Description',
-            'date' => '31.10.2012'
+            'date' => '31 October 2012'
         ],
         3 => [
             'product_id' => 3,
@@ -51,7 +51,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-3',
             'description' => 'Post 3 Description',
-            'date' => '31.10.2013'
+            'date' => '31 October 2013'
         ],
         4 => [
             'product_id' => 4,
@@ -59,7 +59,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-4',
             'description' => 'Post 4 Description',
-            'date' => '31.10.2014'
+            'date' => '31 October 2010'
         ],
         5 => [
             'product_id' => 5,
@@ -67,7 +67,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-5',
             'description' => 'Post 5 Description',
-            'date' => '31.10.2015'
+            'date' => '31 October 2020'
         ],
         6 => [
             'product_id' => 6,
@@ -75,7 +75,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-6',
             'description' => 'Post 6 Description',
-            'date' => '31.10.2016'
+            'date' => '31 October 2016'
         ],
         7 => [
             'product_id' => 7,
@@ -83,7 +83,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-7',
             'description' => 'Post 7 Description',
-            'date' => '31.10.2017'
+            'date' => '31 October 2017'
         ],
         8 => [
             'product_id' => 8,
@@ -91,7 +91,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-8',
             'description' => 'Post 8 Description',
-            'date' => '31.10.2018'
+            'date' => '31 October 2018'
         ],
         9 => [
             'product_id' => 9,
@@ -99,7 +99,7 @@ function catalogGetPost(): array
             'author_name' => 'John Doe',
             'url' => 'post-9',
             'description' => 'Post 9 Description',
-            'date' => '31.10.2019'
+            'date' => '31 October 2019'
         ],
     ];
 }
@@ -145,4 +145,20 @@ function catalogGetPostByUrl(string $url): ?array
     );
 
     return array_pop($data);
+}
+
+function blogGetNewPost(string $date): ?array
+{
+    $recentPosts = array();
+
+    foreach (catalogGetPost() as $key => $val) {
+        $timeInSeconds = round((((time() - strtotime($val[$date])) / 60) / 60) / 24);
+        $val[$date] = $timeInSeconds;
+
+        $recentPosts[$val[$date]] = $val;
+        ksort($recentPosts);
+    }
+    array_splice($recentPosts, 3, count($recentPosts));
+
+    return $recentPosts;
 }

@@ -63,7 +63,7 @@ require_once '../src/data.php';
             </li>
         </ul>
     </nav>
-    <p>© Default Value 2021. All Rights Reserved.</p>
+    <p>© Maksym Zakharchenko Blog 2021. All Rights Reserved.</p>
 </footer>
 </body>
 </html>

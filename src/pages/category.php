@@ -4,7 +4,7 @@
         <?php foreach (catalogGetCategoryPost($data['category_id']) as $post) : ?>
             <div class="post">
                 <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>">
-                    <img src="/post-placeholder.png" alt="<?= $post['name'] ?>" width="200"/>
+                    <img src="#" alt="<?= $post['name'] ?>" width="200"/>
                 </a>
                 <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>"></a>
                 <p><?= $post['description'] ?></p>
