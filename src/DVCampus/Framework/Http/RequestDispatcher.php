@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace DVCampus\Framework\Http;
 
-use InvalidArgumentException;
-
 class RequestDispatcher
 {
     /**
@@ -13,11 +11,19 @@ class RequestDispatcher
      */
     private array $routers;
 
+    private \DVCampus\Framework\Http\Request $request;
+
+    private \DI\Container $container;
+
     /**
      * @param array $routers
+     * @param Request $request
+     * @param \DI\Container $container
      */
     public function __construct(
-        array $routers
+        array $routers,
+        \DVCampus\Framework\Http\Request $request,
+        \DI\Container $container
     ) {
         foreach ($routers as $router) {
             if (!($router instanceof RouterInterface)) {
@@ -26,20 +32,24 @@ class RequestDispatcher
         }
 
         $this->routers = $routers;
+        $this->request = $request;
+        $this->container = $container;
     }
 
     public function dispatch()
     {
-        $requestUri = trim($_SERVER['REQUEST_URI'], '/');
+        $requestUrl = $this->request->getRequestUrl();
 
         foreach ($this->routers as $router) {
-            if ($controllerClass = $router->match($requestUri)) {
-                $controller = new $controllerClass;
+            if ($controllerClass = $router->match($requestUrl)) {
+                $controller = $this->container->get($controllerClass);
 
                 if (!($controller instanceof ControllerInterface)) {
-                    throw new InvalidArgumentException("Controller $controller must implement "
-                        . ControllerInterface::class);
+                    throw new \InvalidArgumentException(
+                        "Controller $controller must implement " . ControllerInterface::class
+                    );
                 }
+
                 $html = $controller->execute();
             }
         }
