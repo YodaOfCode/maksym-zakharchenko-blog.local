@@ -1,0 +1,14 @@
+{
+    "name": "maksymz/hello-world",
+    "require": {
+        "php-di/php-di": "^6.3"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "DVCampus\\": "src/DVCampus/"
+        }
+    }
+}
