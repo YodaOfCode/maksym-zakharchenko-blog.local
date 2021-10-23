@@ -15,10 +15,18 @@ class Router implements RouterInterface
      * @var Request
      */
     private Request $request;
+    private Model\Category\Repository $categoryRepository;
 
-    public function __construct(Request $request)
-    {
+    /**
+     * @param Request $request
+     * @param Model\Category\Repository $categoryRepository
+     */
+    public function __construct(
+        Request $request,
+        \DVCampus\Blog\Model\Category\Repository $categoryRepository
+    ) {
         $this->request = $request;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -28,8 +36,8 @@ class Router implements RouterInterface
     {
         require_once '../src/data.php';
 
-        if ($data = blogGetCategoryByUrl($requestUrl)) {
-            $this->request->setParameter('category', $data);
+        if ($category = $this->categoryRepository->getByUrl($requestUrl)) {
+            $this->request->setParameter('category', $category);
             return Category::class;
         }
 
