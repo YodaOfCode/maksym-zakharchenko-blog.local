@@ -123,30 +123,6 @@ function blogGetCategoryPost(int $categoryId): array
     return $postsForCategory;
 }
 
-function blogGetCategoryByUrl(string $url): ?array
-{
-    $data = array_filter(
-        blogGetCategory(),
-        static function ($category) use ($url) {
-            return $category['url'] === $url;
-        }
-    );
-
-    return array_pop($data);
-}
-
-function blogGetPostByUrl(string $url): ?array
-{
-    $data = array_filter(
-        blogGetPost(),
-        static function ($post) use ($url) {
-            return $post['url'] === $url;
-        }
-    );
-
-    return array_pop($data);
-}
-
 function blogGetNewPost(string $date): ?array
 {
     $recentPosts = array();

@@ -13,7 +13,6 @@ class Repository
      */
     public function __construct(\DI\FactoryInterface $factory)
     {
-
         $this->factory = $factory;
     }
 
@@ -27,17 +26,17 @@ class Repository
                 ->setCategoryId(1)
                 ->setCategoryName('Sport')
                 ->setCategoryUrl('sport')
-                ->setCategoryPosts([1, 2, 3]),
+                ->setCategoryPosts([1, 2]),
             2 => $this->makeEntity()
                 ->setCategoryId(2)
                 ->setCategoryName('Politics')
                 ->setCategoryUrl('politics')
-                ->setCategoryPosts([[4, 5, 6]]),
+                ->setCategoryPosts([3, 4]),
             3 => $this->makeEntity()
                 ->setCategoryId(3)
                 ->setCategoryName('IT')
                 ->setCategoryUrl('it')
-                ->setCategoryPosts([[7, 8, 9]])
+                ->setCategoryPosts([5, 6])
         ];
     }
 
