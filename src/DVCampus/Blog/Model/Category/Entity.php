@@ -82,4 +82,16 @@ class Entity
         $this->category_posts = $category_posts;
         return $this;
     }
+
+    public function getPostIds(): array
+    {
+        return $this->category_posts;
+    }
+
+    public function setPostsIds(array $posts): Entity
+    {
+        $this->category_posts = $posts;
+
+        return $this;
+    }
 }

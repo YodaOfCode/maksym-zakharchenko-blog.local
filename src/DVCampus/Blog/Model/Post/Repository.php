@@ -13,8 +13,7 @@ class Repository
 
     public function __construct(
         \DI\FactoryInterface $factory
-    )
-    {
+    ) {
         $this->factory = $factory;
     }
 
@@ -51,7 +50,7 @@ class Repository
                 ->setPostAuthorName('John Doe')
                 ->setPostUrl('post-4')
                 ->setPostDescription('Post 4 Description')
-                ->setPostDate('31 October 2013'),
+                ->setPostDate('31 October 2015'),
             5 => $this->makeEntity()
                 ->setPostIds(5)
                 ->setPostName('Post 5')
@@ -71,6 +70,8 @@ class Repository
 
     /**
      * @return Entity
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     private function makeEntity(): Entity
     {
@@ -94,14 +95,14 @@ class Repository
     }
 
     /**
-     * @param array $productIds
+     * @param array $postIds
      * @return array
      */
-    public function getByIds(array $productIds): array
+    public function getByIds(array $postIds): array
     {
         return array_intersect_key(
             $this->getList(),
-            array_flip($productIds)
+            array_flip($postIds)
         );
     }
 }

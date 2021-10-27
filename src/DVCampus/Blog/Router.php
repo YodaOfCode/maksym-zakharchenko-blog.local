@@ -6,25 +6,20 @@ namespace DVCampus\Blog;
 
 use DVCampus\Blog\Controller\Category;
 use DVCampus\Blog\Controller\Post;
-use DVCampus\Framework\Http\Request;
-use DVCampus\Framework\Http\RouterInterface;
 
-class Router implements RouterInterface
+class Router implements \DVCampus\Framework\Http\RouterInterface
 {
-    /**
-     * @var Request
-     */
-    private Request $request;
+    private \DVCampus\Framework\Http\Request $request;
     private Model\Category\Repository $categoryRepository;
     private Model\Post\Repository $postRepository;
 
     /**
-     * @param Request $request
+     * @param \DVCampus\Framework\Http\Request $request
      * @param Model\Category\Repository $categoryRepository
      * @param Model\Post\Repository $postRepository
      */
     public function __construct(
-        Request $request,
+        \DVCampus\Framework\Http\Request $request,
         \DVCampus\Blog\Model\Category\Repository $categoryRepository,
         \DVCampus\Blog\Model\Post\Repository $postRepository
     ) {

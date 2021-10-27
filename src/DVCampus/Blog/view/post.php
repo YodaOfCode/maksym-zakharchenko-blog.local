@@ -1,6 +1,7 @@
 
 <?php
-/** @var \DVCampus\Blog\Model\Post\Entity $post */
+/** @var \DVCampus\Blog\Block\Post $block */
+$post = $block->getPost();
 ?>
 
 <div class="page">

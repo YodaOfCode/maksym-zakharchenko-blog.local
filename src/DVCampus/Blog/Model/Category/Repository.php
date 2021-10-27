@@ -26,26 +26,18 @@ class Repository
                 ->setCategoryId(1)
                 ->setCategoryName('Sport')
                 ->setCategoryUrl('sport')
-                ->setCategoryPosts([1, 2]),
+                ->setPostsIds([1, 2]),
             2 => $this->makeEntity()
                 ->setCategoryId(2)
                 ->setCategoryName('Politics')
                 ->setCategoryUrl('politics')
-                ->setCategoryPosts([3, 4]),
+                ->setPostsIds([3, 4]),
             3 => $this->makeEntity()
                 ->setCategoryId(3)
                 ->setCategoryName('IT')
                 ->setCategoryUrl('it')
-                ->setCategoryPosts([5, 6])
+                ->setPostsIds([5, 6])
         ];
-    }
-
-    /**
-     * @return Entity
-     */
-    private function makeEntity(): Entity
-    {
-        return $this->factory->make(Entity::class);
     }
 
     /**
@@ -62,5 +54,13 @@ class Repository
         );
 
         return array_pop($data);
+    }
+
+    /**
+     * @return Entity
+     */
+    private function makeEntity(): Entity
+    {
+        return $this->factory->make(Entity::class);
     }
 }

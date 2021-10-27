@@ -24,6 +24,7 @@ class Entity
 
     /**
      * @param int $post_id
+     * @return Entity
      */
     public function setPostIds(int $post_id): Entity
     {
@@ -41,6 +42,7 @@ class Entity
 
     /**
      * @param string $post_name
+     * @return Entity
      */
     public function setPostName(string $post_name): Entity
     {
@@ -58,6 +60,7 @@ class Entity
 
     /**
      * @param string $post_author_name
+     * @return Entity
      */
     public function setPostAuthorName(string $post_author_name): Entity
     {
@@ -93,6 +96,7 @@ class Entity
 
     /**
      * @param string $post_description
+     * @return Entity
      */
     public function setPostDescription(string $post_description): Entity
     {
@@ -110,11 +114,11 @@ class Entity
 
     /**
      * @param string $post_date
+     * @return Entity
      */
     public function setPostDate(string $post_date): Entity
     {
         $this->post_date = $post_date;
         return $this;
     }
-
 }
