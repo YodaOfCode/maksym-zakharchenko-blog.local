@@ -83,15 +83,21 @@ class Entity
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getPostIds(): array
     {
         return $this->category_posts;
     }
 
+    /**
+     * @param array $posts
+     * @return $this
+     */
     public function setPostsIds(array $posts): Entity
     {
         $this->category_posts = $posts;
-
         return $this;
     }
 }

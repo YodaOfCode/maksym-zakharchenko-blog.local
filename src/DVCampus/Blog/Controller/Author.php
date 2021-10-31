@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DVCampus\Blog\Controller;
 
 use DVCampus\Framework\Http\ControllerInterface;
 use DVCampus\Framework\Http\Response\Raw;
 
-class Post implements ControllerInterface
+class Author implements ControllerInterface
 {
     private \DVCampus\Framework\View\PageResponse $pageResponse;
 
@@ -23,6 +25,6 @@ class Post implements ControllerInterface
      */
     public function execute(): Raw
     {
-        return $this->pageResponse->setBody(\DVCampus\Blog\Block\Post::class);
+        return $this->pageResponse->setBody(\DVCampus\Blog\Block\Author::class);
     }
 }

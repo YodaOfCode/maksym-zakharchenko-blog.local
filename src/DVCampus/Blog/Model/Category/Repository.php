@@ -18,6 +18,8 @@ class Repository
 
     /**
      * @return Entity[]
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getList(): array
     {
@@ -43,6 +45,8 @@ class Repository
     /**
      * @param string $url
      * @return ?Entity
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getByUrl(string $url): ?Entity
     {
@@ -58,6 +62,8 @@ class Repository
 
     /**
      * @return Entity
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     private function makeEntity(): Entity
     {

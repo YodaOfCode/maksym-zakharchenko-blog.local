@@ -1,5 +1,4 @@
-
-<?php  /** @var \DVCampus\Framework\View\Renderer $this */ ?>
+<?php /** @var \DVCampus\Framework\View\Renderer $this */ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,15 +15,21 @@
         .post-list {
             display: flex;
             justify-content: center;
+            margin: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .post {
-            width: 350px;
-            height: 100px;
+            padding: 50px;
+            width: 200px;
+            height: 350px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            margin: 25px;
+            justify-content: center;
             border: 1px solid black;
         }
     </style>
@@ -38,10 +43,11 @@
         <?= $this->render(\DVCampus\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
-
-<main class="post-list">
-    <?= $this->render($this->getContent(), $this->getContentBlockTemplate()) ?>
-</main>
+<div class="container">
+    <main>
+        <?= $this->render($this->getContent(), $this->getContentBlockTemplate()) ?>
+    </main>
+</div>
 
 <footer>
     <nav>

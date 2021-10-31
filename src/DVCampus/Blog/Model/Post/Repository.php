@@ -19,6 +19,8 @@ class Repository
 
     /**
      * @return Entity[]
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getList(): array
     {
@@ -27,41 +29,47 @@ class Repository
                 ->setPostIds(1)
                 ->setPostName('Post 1')
                 ->setPostAuthorName('John Doe')
+                ->setPostAuthorId(1)
                 ->setPostUrl('post-1')
                 ->setPostDescription('Post 1 Description')
                 ->setPostDate('31 October 2011'),
             2 => $this->makeEntity()
                 ->setPostIds(2)
                 ->setPostName('Post 2')
-                ->setPostAuthorName('John Doe')
+                ->setPostAuthorName('Doe John')
+                ->setPostAuthorId(2)
                 ->setPostUrl('post-2')
                 ->setPostDescription('Post 2 Description')
                 ->setPostDate('31 October 2012'),
             3 => $this->makeEntity()
                 ->setPostIds(3)
                 ->setPostName('Post 3')
-                ->setPostAuthorName('John Doe')
+                ->setPostAuthorName('Lol Kek')
+                ->setPostAuthorId(3)
                 ->setPostUrl('post-3')
                 ->setPostDescription('Post 3 Description')
                 ->setPostDate('31 October 2013'),
             4 => $this->makeEntity()
                 ->setPostIds(4)
                 ->setPostName('Post 4')
-                ->setPostAuthorName('John Doe')
+                ->setPostAuthorName('Cheburek')
+                ->setPostAuthorId(4)
                 ->setPostUrl('post-4')
                 ->setPostDescription('Post 4 Description')
                 ->setPostDate('31 October 2015'),
             5 => $this->makeEntity()
                 ->setPostIds(5)
                 ->setPostName('Post 5')
-                ->setPostAuthorName('John Doe')
+                ->setPostAuthorName('Vasya')
+                ->setPostAuthorId(5)
                 ->setPostUrl('post-5')
                 ->setPostDescription('Post 5 Description')
                 ->setPostDate('31 October 2020'),
             6 => $this->makeEntity()
                 ->setPostIds(6)
                 ->setPostName('Post 6')
-                ->setPostAuthorName('John Doe')
+                ->setPostAuthorName('Petya')
+                ->setPostAuthorId(6)
                 ->setPostUrl('post-6')
                 ->setPostDescription('Post 6 Description')
                 ->setPostDate('31 October 2016')
@@ -81,6 +89,8 @@ class Repository
     /**
      * @param string $url
      * @return ?Entity
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getByUrl(string $url): ?Entity
     {
@@ -97,6 +107,8 @@ class Repository
     /**
      * @param array $postIds
      * @return array
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getByIds(array $postIds): array
     {
@@ -104,5 +116,24 @@ class Repository
             $this->getList(),
             array_flip($postIds)
         );
+    }
+
+    /**
+     * @param int $authorId
+     * @return array
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
+    public function getByAuthorId(int $authorId): array
+    {
+        $arr = [];
+        foreach ($this->getList() as $post) {
+            if ($post->getPostId() === $authorId) {
+                $arr[] = $post;
+                return $arr;
+            }
+        }
+        $arr[] = $authorId;
+        return $arr;
     }
 }

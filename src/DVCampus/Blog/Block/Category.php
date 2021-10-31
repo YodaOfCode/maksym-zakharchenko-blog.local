@@ -40,6 +40,8 @@ class Category extends \DVCampus\Framework\View\Block
 
     /**
      * @return PostEntity[]
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getCategoryPosts(): array
     {
@@ -48,8 +50,12 @@ class Category extends \DVCampus\Framework\View\Block
         );
     }
 
-    public function getRecentPosts()
+    /**
+     * @param int $authorId
+     * @return int
+     */
+    public function getAuthorId(int $authorId): int
     {
-        return $this->postRepository->getList();
+        return $this->authorRepository->getByAuthorId($authorId);
     }
 }

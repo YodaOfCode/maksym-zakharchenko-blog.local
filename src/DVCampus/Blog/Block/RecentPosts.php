@@ -9,19 +9,37 @@ class RecentPosts extends \DVCampus\Framework\View\Block
     private \DVCampus\Blog\Model\Post\Repository $postRepository;
 
     protected string $template = '../src/DVCampus/Blog/view/recent_posts.php';
+    private \DVCampus\Blog\Model\Author\Repository $authorRepository;
 
     /**
      * @param \DVCampus\Blog\Model\Post\Repository $postRepository
+     * @param \DVCampus\Blog\Model\Author\Repository $authorRepository
      */
     public function __construct(
-        \DVCampus\Blog\Model\Post\Repository $postRepository
+        \DVCampus\Blog\Model\Post\Repository $postRepository,
+        \DVCampus\Blog\Model\Author\Repository $authorRepository
     ) {
         $this->postRepository = $postRepository;
+        $this->authorRepository = $authorRepository;
     }
 
+    /**
+     * @return array
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
     public function getPosts(): array
     {
         return $this->postRepository->getList();
+    }
+
+    /**
+     * @param string $str
+     * @return string
+     */
+    public function getAuthorsUrl(string $str): string
+    {
+        return $str;
     }
 
     /**

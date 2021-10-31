@@ -32,4 +32,13 @@ class Post extends \DVCampus\Framework\View\Block
     {
         return $this->request->getParameter('post');
     }
+
+    /**
+     * @param int $authorId
+     * @return int
+     */
+    public function getAuthorId(int $authorId): int
+    {
+        return $this->authorRepository->getByAuthorId($authorId);
+    }
 }

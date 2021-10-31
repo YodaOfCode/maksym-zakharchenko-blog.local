@@ -3,15 +3,22 @@
 /** @var \DVCampus\Blog\Model\Post\Entity $date */
 ?>
 
-<?php foreach ($block->newPosts($block->getPosts()) as $date) : ?>
-    <div class="post-list">
-        <div class="post">
-            <a href="/<?= $date->getPostUrl() ?>" title="<?= $date->getPostName() ?>">
-                <img src="#" alt="<?= $date->getPostName() ?>" width="200"/>
-            </a>
-            <a href="/<?= $date->getPostUrl() ?>" title="Product 1"><?= $date->getPostName() ?></a>
-            <span>Publicated: <?= $date->getPostDate() ?> days ago</span>
-            <button type="button"><a href="<?= $date->getPostUrl() ?>">Read more</a></button>
+<div class="post-list">
+    <?php foreach ($block->newPosts($block->getPosts()) as $date) : ?>
+        <div class="post-list">
+            <div class="post">
+                <h1>
+                    <a href="/<?= $date->getPostUrl() ?>" title="<?= $date->getPostName() ?>">
+                        <img src="/post.jpg" alt="<?= $date->getPostName() ?>"/>
+                    </a>
+                </h1>
+                <a href="/<?= $date->getPostUrl() ?>"><?= $date->getPostName() ?></a>
+                <h3>
+                    <a href="<?= $block->getAuthorsUrl($date->getPostAuthorId()) ?>">Get posts by this author</a>
+                </h3>
+                <span>Publicated: <?= $date->getPostDate() ?> days ago</span>
+                <button type="button"><a href="<?= $date->getPostUrl() ?>">Read more</a></button>
+            </div>
         </div>
-    </div>
-<?php endforeach; ?>
+    <?php endforeach; ?>
+</div>

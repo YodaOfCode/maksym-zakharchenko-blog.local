@@ -10,6 +10,7 @@ class Entity
     private int $post_id;
     private string $post_name;
     private string $post_author_name;
+    private int $post_author_id;
     private string $post_url;
     private string $post_description;
     private string $post_date;
@@ -17,7 +18,7 @@ class Entity
     /**
      * @return int
      */
-    public function getPostIds(): int
+    public function getPostId(): int
     {
         return $this->post_id;
     }
@@ -121,4 +122,23 @@ class Entity
         $this->post_date = $post_date;
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getPostAuthorId(): int
+    {
+        return $this->post_author_id;
+    }
+
+    /**
+     * @param int $post_author_id
+     * @return Entity
+     */
+    public function setPostAuthorId(int $post_author_id): Entity
+    {
+        $this->post_author_id = $post_author_id;
+        return $this;
+    }
+
 }

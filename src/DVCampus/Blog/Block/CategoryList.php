@@ -22,6 +22,8 @@ class CategoryList extends \DVCampus\Framework\View\Block
 
     /**
      * @return CategoryEntity[]
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     public function getCategories(): array
     {

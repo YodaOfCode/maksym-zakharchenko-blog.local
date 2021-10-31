@@ -18,9 +18,11 @@ class Entity
 
     /**
      * @param int $author_id
+     * @return Entity
      */
-    public function setAuthorId(int $author_id): void
+    public function setAuthorId(int $author_id): Entity
     {
         $this->author_id = $author_id;
+        return $this;
     }
 }

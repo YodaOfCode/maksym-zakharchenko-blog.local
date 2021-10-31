@@ -18,6 +18,9 @@ class Category implements ControllerInterface
         $this->pageResponse = $pageResponse;
     }
 
+    /**
+     * @return Raw
+     */
     public function execute(): Raw
     {
         return $this->pageResponse->setBody(\DVCampus\Blog\Block\Category::class);
