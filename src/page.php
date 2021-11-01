@@ -1,6 +1,5 @@
-<?php
-require_once '../src/data.php';
-?>
+<?php /** @var \DVCampus\Framework\View\Renderer $this */ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +15,21 @@ require_once '../src/data.php';
         .post-list {
             display: flex;
             justify-content: center;
+            margin: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .post {
-            width: 350px;
-            height: 100px;
+            padding: 50px;
+            width: 200px;
+            height: 350px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            margin: 25px;
+            justify-content: center;
             border: 1px solid black;
         }
     </style>
@@ -35,19 +40,14 @@ require_once '../src/data.php';
         <img src="logo.jpg" alt="Logo" width="200"/>
     </a>
     <nav>
-        <ul >
-            <?php foreach (blogGetCategory() as $category) : ?>
-                <li>
-                    <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?= $this->render(\DVCampus\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
-
-<main class="post-list">
-    <?php require_once "../src/pages/$page" ?>
-</main>
+<div class="container">
+    <main>
+        <?= $this->render($this->getContent(), $this->getContentBlockTemplate()) ?>
+    </main>
+</div>
 
 <footer>
     <nav>
