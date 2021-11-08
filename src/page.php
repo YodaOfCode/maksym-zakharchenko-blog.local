@@ -1,4 +1,4 @@
-<?php /** @var \DVCampus\Framework\View\Renderer $this */ ?>
+<?php /** @var \MaksymZ\Framework\View\Renderer $this */ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +40,7 @@
         <img src="logo.jpg" alt="Logo" width="200"/>
     </a>
     <nav>
-        <?= $this->render(\DVCampus\Blog\Block\CategoryList::class) ?>
+        <?= $this->render(\MaksymZ\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
 <div class="container">
