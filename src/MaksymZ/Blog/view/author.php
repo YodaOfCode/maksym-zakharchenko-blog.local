@@ -4,7 +4,7 @@
 ?>
 
 <div>
-    <?php foreach ($block->getAuthorsPage() as $p) : ?>
+    <?php foreach ($block->getAuthorById() as $p) : ?>
         <h3>All posts by the author with ID:
             <?= $p->getPostAuthorId() ?>
             and name

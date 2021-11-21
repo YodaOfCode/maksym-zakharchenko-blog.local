@@ -33,18 +33,11 @@ class Author extends \MaksymZ\Framework\View\Block
     }
 
     /**
-     * @return array
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function getAuthorsPage(): array
+    public function getAuthorById(): array
     {
-        $postsByThisAuthorArray = [];
-        foreach ($this->postRepository->getList() as $post) {
-            if ($post->getPostAuthorId() === $this->getAuthor()->getAuthorID()) {
-                $postsByThisAuthorArray[] = $post;
-            }
-        }
-        return $postsByThisAuthorArray;
+        return $this->postRepository->getPostsByAuthorId($this->getAuthor()->getAuthorID());
     }
 }

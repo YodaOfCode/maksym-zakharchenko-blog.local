@@ -50,17 +50,8 @@ class Category extends \MaksymZ\Framework\View\Block
         );
     }
 
-    /**
-     * @param int $authorId
-     * @return string|null
-     */
-    public function getAuthorById(int $authorId): ?string
+    public function getAuthorById(): string
     {
-        foreach ($this->authorRepository->getAuthorsList() as $author) {
-            if ($author->getAuthorId() === $authorId) {
-                return $author->getAuthorUrl();
-            }
-        }
-        return null;
+        return $this->authorRepository->getPostsByAuthorId($this->getCategory()->getCategoryId());
     }
 }

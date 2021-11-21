@@ -76,4 +76,18 @@ class Repository
     {
         return $this->factory->make(Entity::class);
     }
+
+    /**
+     * @param int $authorId
+     * @return string|null
+     */
+    public function getPostsByAuthorId(int $authorId): ?string
+    {
+        foreach ($this->getAuthorsList() as $author) {
+            if ($author->getAuthorId() === $authorId) {
+                return $author->getAuthorUrl();
+            }
+        }
+        return null;
+    }
 }

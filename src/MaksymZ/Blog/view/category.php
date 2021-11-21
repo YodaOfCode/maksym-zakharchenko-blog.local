@@ -14,7 +14,7 @@
                 <p><?= $post->getPostDescription() ?></p>
                 <div>
                     <h3>
-                        <a href="<?= $block->getAuthorById($post->getPostAuthorId()) ?>">
+                        <a href="<?= $block->getAuthorById() ?>">
                             Get author by ID
                         </a>
                     </h3>

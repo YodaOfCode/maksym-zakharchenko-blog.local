@@ -90,8 +90,8 @@ class Repository
     {
         $data = array_filter(
             $this->getList(),
-            static function ($category) use ($url) {
-                return $category->getPostUrl() === $url;
+            static function ($post) use ($url) {
+                return $post->getPostUrl() === $url;
             }
         );
 
@@ -119,5 +119,22 @@ class Repository
     public function getByAuthorId(int $authorId): int
     {
         return $authorId;
+    }
+
+    /**
+     * @param $authorId
+     * @return array
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
+    public function getPostsByAuthorId($authorId): array
+    {
+        $postsByThisAuthorArray = [];
+        foreach ($this->getList() as $post) {
+            if ($post->getPostAuthorId() === $authorId) {
+                $postsByThisAuthorArray[] = $post;
+            }
+        }
+        return $postsByThisAuthorArray;
     }
 }
