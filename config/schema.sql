@@ -2,8 +2,6 @@ DROP TABLE IF EXISTS `category_post`;
 #---
 DROP TABLE IF EXISTS `daily_statistics`;
 #---
-DROP TABLE IF EXISTS `author_post`;
-#---
 DROP TABLE IF EXISTS `category`;
 #---
 DROP TABLE IF EXISTS `post`;
@@ -14,7 +12,7 @@ CREATE TABLE `post`
 (
     `post_id`     int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Post ID',
     `title`       varchar(127) NOT NULL COMMENT 'Post title',
-    `author_id`   int unsigned NOT NULL COMMENT 'ID of the author, who wrote this post',
+    `author_id`   int unsigned COMMENT 'ID of the author, who wrote this post',
     `url`         varchar(127) NOT NULL COMMENT 'Post URL',
     `description` varchar(4095) DEFAULT NULL COMMENT 'Post description',
     `date`        date         NOT NULL COMMENT 'Post created date',
@@ -31,7 +29,7 @@ CREATE TABLE `category`
 #---
 CREATE TABLE `author`
 (
-    `author_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Author ID',
+    `author_id` int unsigned AUTO_INCREMENT COMMENT 'Author ID',
     `url`       varchar(127) NOT NULL COMMENT 'Author URL',
     `name`      varchar(127) NOT NULL COMMENT 'Author name',
     PRIMARY KEY (`author_id`)
@@ -111,23 +109,6 @@ ALTER TABLE `category_post`
 DELETE
 SET NULL;
 #---
-CREATE TABLE `author_post`
-(
-    `author_post_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `post_id`        int unsigned NOT NULL COMMENT 'Post ID',
-    `author_id`      int unsigned COMMENT 'Author ID',
-    PRIMARY KEY (`author_post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Author Post';
-#---
-INSERT INTO `author_post` (`post_id`, `author_id`)
-VALUES ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '1'),('7', '2'),('8', '3'),('9', '4'),
-('10', '5'),('11', '1'),('12', '2'),('13', '3'), ('14', '4'), ('15', '5');
-#---
-ALTER TABLE `author_post`
+ALTER TABLE `post`
     ADD CONSTRAINT `FK_AUTHOR_POST_AUTHOR_ID` FOREIGN KEY (`author_id`)
-        REFERENCES `author` (`author_id`) ON DELETE SET NULL,
-    ADD CONSTRAINT `FK_AUTHOR_POST_POST_ID` FOREIGN KEY (`post_id`)
-        REFERENCES `post` (`post_id`) ON
-DELETE
-CASCADE;
-
+        REFERENCES `author` (`author_id`) ON DELETE SET NULL;
