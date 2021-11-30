@@ -13,7 +13,7 @@ class Entity
     /**
      * @return int
      */
-    public function getAuthorID(): int
+    public function getAuthorId(): int
     {
         return $this->authorID;
     }

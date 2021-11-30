@@ -90,8 +90,8 @@ class Repository
     {
         $data = array_filter(
             $this->getList(),
-            static function ($category) use ($url) {
-                return $category->getPostUrl() === $url;
+            static function ($post) use ($url) {
+                return $post->getPostUrl() === $url;
             }
         );
 
@@ -113,11 +113,33 @@ class Repository
     }
 
     /**
-     * @param int $authorId
-     * @return int
+     * @param $authorId
+     * @return array
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
-    public function getByAuthorId(int $authorId): int
+    public function getPostsByAuthorId(int $authorId): array
     {
-        return $authorId;
+        $postsByThisAuthorArray = [];
+        foreach ($this->getList() as $post) {
+            if ($post->getPostAuthorId() === $authorId) {
+                $postsByThisAuthorArray[] = $post;
+            }
+        }
+        return $postsByThisAuthorArray;
+    }
+
+    public function newPosts(): ?array
+    {
+        $recentPosts = array();
+        foreach ($this->getList() as $val) {
+            $timeInDays = round((((time() - strtotime($val->getPostDate())) / 60) / 60) / 24);
+            $myArray = $val->setPostDate((string)$timeInDays);
+            $recentPosts[$val->getPostDate()] = $myArray;
+            ksort($recentPosts);
+        }
+
+        array_splice($recentPosts, 3, count($recentPosts));
+        return $recentPosts;
     }
 }

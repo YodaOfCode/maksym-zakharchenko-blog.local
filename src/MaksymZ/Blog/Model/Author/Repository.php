@@ -48,11 +48,6 @@ class Repository
         ];
     }
 
-    public function getByAuthorId(int $authorId): int
-    {
-        return $authorId;
-    }
-
     /**
      * @param string $url
      * @return Entity|null
@@ -75,5 +70,19 @@ class Repository
     private function makeEntity(): Entity
     {
         return $this->factory->make(Entity::class);
+    }
+
+    /**
+     * @param int $authorId
+     * @return string|null
+     */
+    public function getAuthorById(int $authorId): ?string
+    {
+        foreach ($this->getAuthorsList() as $author) {
+            if ($author->getAuthorId() === $authorId) {
+                return $author->getAuthorUrl();
+            }
+        }
+        return null;
     }
 }

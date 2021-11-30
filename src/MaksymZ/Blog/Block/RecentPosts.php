@@ -20,16 +20,6 @@ class RecentPosts extends \MaksymZ\Framework\View\Block
     }
 
     /**
-     * @return array
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
-     */
-    public function getPosts(): array
-    {
-        return $this->postRepository->getList();
-    }
-
-    /**
      * @param string $url
      * @return string
      */
@@ -39,19 +29,10 @@ class RecentPosts extends \MaksymZ\Framework\View\Block
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function newPosts(array $posts): ?array
+    public function newPosts(): ?array
     {
-        $recentPosts = array();
-        foreach ($posts as $val) {
-            $timeInDays = round((((time() - strtotime($val->getPostDate())) / 60) / 60) / 24);
-            $myArray = $val->setPostDate((string)$timeInDays);
-            $recentPosts[$val->getPostDate()] = $myArray;
-            ksort($recentPosts);
-        }
-
-        array_splice($recentPosts, 3, count($recentPosts));
-        return $recentPosts;
+        return $this->postRepository->newPosts();
     }
 }

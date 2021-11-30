@@ -4,7 +4,7 @@
 ?>
 
 <div class="post-list">
-    <?php foreach ($block->newPosts($block->getPosts()) as $recentPostInfo) : ?>
+    <?php foreach ($block->newPosts() as $recentPostInfo) : ?>
         <div class="post-list">
             <div class="post">
                 <h1>

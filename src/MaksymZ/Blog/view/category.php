@@ -19,7 +19,6 @@
                         </a>
                     </h3>
                 </div>
-
                 <span><?= $post->getPostDate() ?></span>
                 <button type="button"><a href="/<?= $post->getPostUrl() ?>">Read more</a></button>
             </div>
