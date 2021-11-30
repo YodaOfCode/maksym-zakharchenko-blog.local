@@ -48,11 +48,6 @@ class Repository
         ];
     }
 
-    public function getByAuthorId(int $authorId): int
-    {
-        return $authorId;
-    }
-
     /**
      * @param string $url
      * @return Entity|null
@@ -81,7 +76,7 @@ class Repository
      * @param int $authorId
      * @return string|null
      */
-    public function getPostsByAuthorId(int $authorId): ?string
+    public function getAuthorById(int $authorId): ?string
     {
         foreach ($this->getAuthorsList() as $author) {
             if ($author->getAuthorId() === $authorId) {

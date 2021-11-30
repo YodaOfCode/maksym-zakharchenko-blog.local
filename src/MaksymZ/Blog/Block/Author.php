@@ -36,8 +36,8 @@ class Author extends \MaksymZ\Framework\View\Block
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function getAuthorById(): array
+    public function getPostsByAuthorId(): array
     {
-        return $this->postRepository->getPostsByAuthorId($this->getAuthor()->getAuthorID());
+        return $this->postRepository->getPostsByAuthorId($this->getAuthor()->getAuthorId());
     }
 }

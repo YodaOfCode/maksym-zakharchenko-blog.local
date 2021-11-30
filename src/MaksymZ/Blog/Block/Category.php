@@ -50,8 +50,8 @@ class Category extends \MaksymZ\Framework\View\Block
         );
     }
 
-    public function getAuthorById(): string
+    public function getAuthorById($authorId): string
     {
-        return $this->authorRepository->getPostsByAuthorId($this->getCategory()->getCategoryId());
+        return $this->authorRepository->getAuthorById($authorId);
     }
 }

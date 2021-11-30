@@ -113,21 +113,12 @@ class Repository
     }
 
     /**
-     * @param int $authorId
-     * @return int
-     */
-    public function getByAuthorId(int $authorId): int
-    {
-        return $authorId;
-    }
-
-    /**
      * @param $authorId
      * @return array
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function getPostsByAuthorId($authorId): array
+    public function getPostsByAuthorId(int $authorId): array
     {
         $postsByThisAuthorArray = [];
         foreach ($this->getList() as $post) {
@@ -136,5 +127,19 @@ class Repository
             }
         }
         return $postsByThisAuthorArray;
+    }
+
+    public function newPosts(): ?array
+    {
+        $recentPosts = array();
+        foreach ($this->getList() as $val) {
+            $timeInDays = round((((time() - strtotime($val->getPostDate())) / 60) / 60) / 24);
+            $myArray = $val->setPostDate((string)$timeInDays);
+            $recentPosts[$val->getPostDate()] = $myArray;
+            ksort($recentPosts);
+        }
+
+        array_splice($recentPosts, 3, count($recentPosts));
+        return $recentPosts;
     }
 }

@@ -39,11 +39,6 @@ class Post extends \MaksymZ\Framework\View\Block
      */
     public function getAuthorById(int $authorId): ?string
     {
-        foreach ($this->authorRepository->getAuthorsList() as $author) {
-            if ($author->getAuthorId() === $authorId) {
-                return $author->getAuthorUrl();
-            }
-        }
-        return null;
+        return $this->authorRepository->getAuthorById($authorId);
     }
 }

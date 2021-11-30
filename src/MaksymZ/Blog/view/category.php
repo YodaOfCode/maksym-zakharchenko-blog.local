@@ -14,12 +14,11 @@
                 <p><?= $post->getPostDescription() ?></p>
                 <div>
                     <h3>
-                        <a href="<?= $block->getAuthorById() ?>">
+                        <a href="<?= $block->getAuthorById($post->getPostAuthorId()) ?>">
                             Get author by ID
                         </a>
                     </h3>
                 </div>
-
                 <span><?= $post->getPostDate() ?></span>
                 <button type="button"><a href="/<?= $post->getPostUrl() ?>">Read more</a></button>
             </div>
